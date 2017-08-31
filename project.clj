@@ -42,40 +42,42 @@
     :resource-paths ["target/dev/client"]
     :npm {:package {:main "target/dev/server/js/out.js"
                     :scripts {:start "node target/dev/server/js/out.js"}}}
-    :cljsbuild {:start {:source-paths ["env/dev/server"]
-                        :compiler
-                        {:optimizations :none
-                         :pretty-print true
-                         :source-map true
-                         :source-map-timestamp true
-                         :figwheel true}}
-                :app {:source-paths ["env/dev/client"]
-                      :compiler
-                      {:optimizations :none
-                       :pretty-print true
-                       :source-map true
-                       :source-map-timestamp true
-                       :figwheel true}}}}
+    :cljsbuild {:builds 
+                {:start {:source-paths ["env/dev/server"]
+                         :compiler
+                         {:optimizations :none
+                          :pretty-print true
+                          :source-map true
+                          :source-map-timestamp true
+                          :figwheel true}}
+                 :app {:source-paths ["env/dev/client"]
+                       :compiler
+                       {:optimizations :none
+                        :pretty-print true
+                        :source-map true
+                        :source-map-timestamp true
+                        :figwheel true}}}}}
    :prod
    {:main "target/prod/server/js/out.js"
     :source-paths ["env/prod"]
     :resource-paths ["target/prod/client"]
     :npm {:package {:main "target/prod/server/js/out.js"
                     :scripts {:start "node target/prod/server/js/out.js"}}}
-    :cljsbuild {:start {:source-paths ["env/prod/server"]
-                        :compiler
-                        {:output-dir "target/prod/server/js/out"
-                         :output-to  "target/prod/server/js/out.js"
-                         :optimizations :advanced
-                         :source-map false
-                         :pretty-print false}}
-                :app {:source-paths ["env/prod/client"]
-                      :compiler
-                      {:output-dir "target/prod/client/js/out"
-                       :output-to  "target/prod/client/js/out.js"
-                       :optimizations :advanced
-                       :source-map false
-                       :pretty-print false}}}}
+    :cljsbuild {:builds
+                {:start {:source-paths ["env/prod/server"]
+                         :compiler
+                         {:output-dir "target/prod/server/js/out"
+                          :output-to  "target/prod/server/js/out.js"
+                          :optimizations :advanced
+                          :source-map false
+                          :pretty-print false}}
+                 :app {:source-paths ["env/prod/client"]
+                       :compiler
+                       {:output-dir "target/prod/client/js/out"
+                        :output-to  "target/prod/client/js/out.js"
+                        :optimizations :advanced
+                        :source-map false
+                        :pretty-print false}}}}}
    :test
    [:prod
     {:main "target/test/server/js/out.js"
