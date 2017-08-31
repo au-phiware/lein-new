@@ -4,7 +4,7 @@
 
 (enable-console-print!)
 
-(.addeventlistener js/window "error" #(js/console.error %))
+(.addEventListener js/window "error" #(js/console.error %))
 
 (mount/start)
 

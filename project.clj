@@ -5,6 +5,7 @@
                   :scope "provided"]
                  [mount "0.1.11"]
                  [kibu/pushy "0.3.8"]
+                 [hiccups "0.3.0"]
                  [doo "0.1.7"]]
   :plugins [[lein-cljsbuild "1.1.7"
              :exclusions [[org.clojure/clojure]]]
@@ -15,7 +16,8 @@
   :source-paths []
   :clean-targets ^{:protect false} [:target-path]
   :resource-paths ["resources"]
-  :npm {:dependencies [express "4.15.4"]
+  :npm {:dependencies [[express "4.15.4"]
+                       [serve-static "1.12.4"]]
         :devDependencies [["@cljs-oss/module-deps" "1.1.1"]
                           [ws "3.1.0"]
                           [source-map-support "0.4.16"]]}
@@ -33,8 +35,9 @@
              {:main lein-new.app
               :output-dir "target/dev/client/js/out"
               :output-to  "target/dev/client/js/out.js"
-              :asset-path "js/lib"
+              :asset-path "js/out"
               :language-out :ecmascript5-strict}}}}
+  :figwheel {:builds-to-start [:start :app]}
   :profiles
   {:dev
    {:main "target/dev/server/js/out.js"
@@ -44,19 +47,19 @@
                     :scripts {:start "node target/dev/server/js/out.js"}}}
     :cljsbuild {:builds 
                 {:start {:source-paths ["env/dev/server"]
+                         :figwheel true
                          :compiler
                          {:optimizations :none
                           :pretty-print true
                           :source-map true
-                          :source-map-timestamp true
-                          :figwheel true}}
+                          :source-map-timestamp true}}
                  :app {:source-paths ["env/dev/client"]
+                       :figwheel true
                        :compiler
                        {:optimizations :none
                         :pretty-print true
                         :source-map true
-                        :source-map-timestamp true
-                        :figwheel true}}}}}
+                        :source-map-timestamp true}}}}}
    :prod
    {:main "target/prod/server/js/out.js"
     :source-paths ["env/prod"]
