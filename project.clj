@@ -12,7 +12,7 @@
             [lein-npm "0.6.2"]
             [lein-doo "0.1.7"]
             [lein-figwheel "0.5.13"]]
-  :target-path "target/%s"
+  :target-path "target"
   :source-paths []
   :clean-targets ^{:protect false} [:target-path]
   :resource-paths ["resources"]
@@ -36,6 +36,7 @@
               :output-dir "target/dev/client/js/out"
               :output-to  "target/dev/client/js/out.js"
               :asset-path "js/out"
+              :process-shim false
               :language-out :ecmascript5-strict}}}}
   :figwheel {:builds-to-start [:start :app]}
   :profiles
@@ -98,4 +99,9 @@
                                               "test/client" "env/test/client"]
                      :compiler
                      {:output-dir "target/test/client/js/out"
-                      :output-to  "target/test/client/js/out.js"}}}}}]})
+                      :output-to  "target/test/client/js/out.js"}}}}}]}
+  :aliases
+  {"build" ["do"
+            ["npm" "install"]
+            ["figwheel"]]
+   "start" ["npm" "start"]})
