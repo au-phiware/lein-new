@@ -94,11 +94,13 @@
                                                 "test/server" "env/test/server"]
                        :compiler
                        {:output-dir "target/test/server/js/out"
+                        :source-map "target/test/server/js/out.js.map"
                         :output-to  "target/test/server/js/out.js"}}
                :app {:source-paths ^:replace ["src/client" "src/common"
                                               "test/client" "env/test/client"]
                      :compiler
                      {:output-dir "target/test/client/js/out"
+                      :source-map "target/test/client/js/out.js.map"
                       :output-to  "target/test/client/js/out.js"}}}}}]}
   :aliases
   {"build" ["do"
