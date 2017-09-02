@@ -1,5 +1,3 @@
-(ns lein-new.env
-  (:require [mount.core :refer [defstate]]))
+(ns lein-new.env)
 
-(defstate env
-  :start {:document-root "."})
+(def env (atom {:document-root "."}))
