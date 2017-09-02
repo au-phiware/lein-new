@@ -2,7 +2,8 @@
   (:require [cljs.nodejs :as nodejs]
             [lein-new.hello :refer [hello]]
             [hiccups.runtime]
-            [lein-new.env :refer [env]])
+            [lein-new.env :refer [env]]
+            [mount.core :refer [defstate]])
   (:require-macros [hiccups.core :refer [defhtml]]))
 
 (defhtml master [app]
@@ -22,4 +23,8 @@
        (.use ((aget express "static") (:document-root @env)))
        (.get "/" hello-world)
        (.listen port #(println "Listening on port" port)))))
+
+(defstate server
+  :start (start-server 3000)
+  :stop  (.close @server))
 
