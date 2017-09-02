@@ -18,10 +18,11 @@
   (.send res (master [:h1 (hello "World!")])))
 
 (defn start-server [port]
-  (-> ((nodejs/require "express"))
-      (.use ((nodejs/require "serve-static") (:document-root @env)))
-      (.get "/" hello-world)
-      (.listen port #(println "Listening on port" port))))
+  (let [express (nodejs/require "express")]
+    (-> (express)
+       (.use ((aget express "static") (:document-root @env)))
+       (.get "/" hello-world)
+       (.listen port #(println "Listening on port" port)))))
 
 (defstate server
   :start (start-server 3000)

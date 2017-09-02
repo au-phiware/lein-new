@@ -16,10 +16,10 @@
   :source-paths []
   :clean-targets ^{:protect false} [:target-path]
   :resource-paths ["resources"]
-  :npm {:dependencies [[express "4.15.4"]
-                       [serve-static "1.12.4"]]
+  :npm {:dependencies [[express "4.15.4"]]
         :devDependencies [["@cljs-oss/module-deps" "1.1.1"]
                           [ws "3.1.0"]
+                          [closurecompiler-externs "1.0.4"]
                           [source-map-support "0.4.16"]]}
   :cljsbuild
   {:builds {:start
@@ -28,6 +28,8 @@
              {:main lein-new.start
               :output-dir "target/dev/server/js/out"
               :output-to  "target/dev/server/js/out.js"
+              :externs ["node_modules/contrib/Express.js"
+                        "node_modules/path.js"]
               :target :nodejs}}
             :app
             {:source-paths ["src/client" "src/common"]
