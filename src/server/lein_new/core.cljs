@@ -18,7 +18,7 @@
 
 (defn start-server [port]
   (let [express (nodejs/require "express")]
-    (-> (express)
+    (-> (new express)
        (.use ((aget express "static") (:document-root @env)))
        (.get "/" hello-world)
        (.listen port #(println "Listening on port" port)))))
