@@ -6,6 +6,7 @@
                  [mount "0.1.11"]
                  [kibu/pushy "0.3.8"]
                  [hiccups "0.3.0"]
+                 [io.nervous/cljs-nodejs-externs "0.2.0"]
                  [doo "0.1.7"]]
   :plugins [[lein-cljsbuild "1.1.7"
              :exclusions [[org.clojure/clojure]]]
@@ -28,8 +29,6 @@
              {:main lein-new.start
               :output-dir "target/dev/server/js/out"
               :output-to  "target/dev/server/js/out.js"
-              :externs ["node_modules/contrib/Express.js"
-                        "node_modules/path.js"]
               :target :nodejs}}
             :app
             {:source-paths ["src/client" "src/common"]
