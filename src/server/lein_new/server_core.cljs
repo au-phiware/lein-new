@@ -1,4 +1,4 @@
-(ns lein-new.core
+(ns lein-new.server-core
   (:require [cljs.nodejs :as nodejs]
             [lein-new.hello :refer [hello]]
             [hiccups.runtime]

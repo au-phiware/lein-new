@@ -1,7 +1,7 @@
 (ns lein-new.start
   (:require [cljs.nodejs :as nodejs]
             [mount.core :as mount]
-            [lein-new.core]))
+            [lein-new.server-core]))
 
 (nodejs/enable-util-print!)
 
