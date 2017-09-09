@@ -15,7 +15,8 @@
              :exclusions [[org.clojure/clojure]]]
             [lein-npm "0.6.2"]
             [lein-cooper "1.2.2"]
-            [lein-doo "0.1.7"]
+            [lein-doo "0.1.7"
+             :exclusions [[org.clojure/clojurescript]]]
             [lein-figwheel "0.5.13"]]
   :target-path "target"
   :source-paths []
@@ -47,7 +48,7 @@
               :asset-path "js/out"
               :process-shim false
               :language-out :ecmascript5-strict}}}}
-  :figwheel {:builds-to-start [:start]
+  :figwheel {:builds-to-start [:start :app]
              :server-logfile false}
   :profiles
   {:dev
@@ -58,14 +59,14 @@
                     :scripts {:start "node target/dev/server/js/out.js"}}}
     :cljsbuild {:builds 
                 {:start {:source-paths ["env/dev/server"]
-                         :figwheel true
+                         :figwheel {}
                          :compiler
                          {:optimizations :none
                           :pretty-print true
                           :source-map true
                           :source-map-timestamp true}}
                  :app {:source-paths ["env/dev/client"]
-                       :figwheel true
+                       :figwheel {}
                        :compiler
                        {:optimizations :none
                         :pretty-print true
@@ -83,14 +84,14 @@
                          {:output-dir "target/prod/server/js/out"
                           :output-to  "target/prod/server/js/out.js"
                           :optimizations :advanced
-                          :source-map false
+                          :source-map nil
                           :pretty-print false}}
                  :app {:source-paths ["env/prod/client"]
                        :compiler
                        {:output-dir "target/prod/client/js/out"
                         :output-to  "target/prod/client/js/out.js"
                         :optimizations :advanced
-                        :source-map false
+                        :source-map nil
                         :pretty-print false}}}}}
    :test
    [:prod
