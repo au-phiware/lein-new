@@ -7,16 +7,22 @@
                  [kibu/pushy "0.3.8"]
                  [hiccups "0.3.0"]
                  [io.nervous/cljs-nodejs-externs "0.2.0"]
+                 [com.cemerick/piggieback "0.2.2"]
+                 [org.clojure/tools.nrepl "0.2.13"]
+                 [figwheel-sidecar "0.5.13"]
                  [doo "0.1.7"]]
   :plugins [[lein-cljsbuild "1.1.7"
              :exclusions [[org.clojure/clojure]]]
             [lein-npm "0.6.2"]
+            [lein-cooper "1.2.2"]
             [lein-doo "0.1.7"]
             [lein-figwheel "0.5.13"]]
   :target-path "target"
   :source-paths []
   :clean-targets ^{:protect false} [:target-path]
   :resource-paths ["resources"]
+  :cooper {"build" ["lein" "cljsbuild" "auto"]
+           "repl"  ["lein" "repl" ":headless"]}
   :npm {:dependencies [[express "4.15.4"]]
         :devDependencies [["@cljs-oss/module-deps" "1.1.1"]
                           [ws "3.1.0"]
@@ -25,6 +31,7 @@
   :cljsbuild
   {:builds {:start
             {:source-paths ["src/server" "src/common"]
+             :figwheel {:autoload false}
              :compiler
              {:main lein-new.start
               :output-dir "target/dev/server/js/out"
@@ -32,6 +39,7 @@
               :target :nodejs}}
             :app
             {:source-paths ["src/client" "src/common"]
+             :figwheel {:autoload false}
              :compiler
              {:main lein-new.app
               :output-dir "target/dev/client/js/out"
@@ -39,7 +47,8 @@
               :asset-path "js/out"
               :process-shim false
               :language-out :ecmascript5-strict}}}}
-  :figwheel {:builds-to-start [:start :app]}
+  :figwheel {:builds-to-start [:start]
+             :server-logfile false}
   :profiles
   {:dev
    {:main "target/dev/server/js/out.js"
