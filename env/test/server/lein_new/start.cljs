@@ -3,6 +3,7 @@
     [cljs.nodejs :as nodejs]
     [mount.core :as mount]
     [lein-new.core]
+    [lein-new.env]
     #_[doo.runner :refer-macros [doo-tests]]
     #_[lein-new.core-test]))
 
