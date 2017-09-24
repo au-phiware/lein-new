@@ -9,9 +9,15 @@
 (defhtml master [app]
   [:html
    [:head
-    [:title "Hello World!"]]
+    [:title "Hello World!"]
+    [:link {:rel "stylesheet" :href "/css/bootstrap.css"}]]
    [:body
     app
+    [:div.modal.fade
+     {:tabindex -1 :role "dialog" :aria-labelledby "mySmallModalLabel" :aria-hidden true}
+     [:div.modal-dialog.modal-sm
+      [:div.modal-content
+       [:p]]]]
     [:script {:src "/js/out.js"}]]])
 
 (defn hello-world [req res]

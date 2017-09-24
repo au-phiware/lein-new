@@ -47,9 +47,15 @@
               :output-to  "target/dev/client/js/out.js"
               :asset-path "js/out"
               :process-shim false
+              :npm-deps {:jquery "3.2.1"
+                         :popper.js "1.12.5"
+                         :bootstrap "4.0.0-beta"
+                         :bootstrap-table "1.11.1"}
+              :install-deps true
               :language-out :ecmascript5-strict}}}}
   :figwheel {:builds-to-start [:start :app]
              :server-logfile false}
+
   :profiles
   {:dev
    {:main "target/dev/server/js/out.js"
