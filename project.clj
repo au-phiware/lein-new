@@ -1,8 +1,7 @@
 (defproject lein-new "0.1.0-SNAPSHOT"
   :description "Minimal lein project with multiple environments."
   :dependencies [[org.clojure/clojure "1.8.0"]
-                 [org.clojure/clojurescript "1.9.908"
-                  :scope "provided"]
+                 [org.clojure/clojurescript "0.0-SNAPSHOT"]
                  [mount "0.1.11"]
                  [kibu/pushy "0.3.8"]
                  [hiccups "0.3.0"]
@@ -12,7 +11,8 @@
                  [figwheel-sidecar "0.5.13"]
                  [doo "0.1.7"]]
   :plugins [[lein-cljsbuild "1.1.7"
-             :exclusions [[org.clojure/clojure]]]
+             :exclusions [[org.clojure/clojure]
+                          [org.clojure/clojurescript]]]
             [lein-npm "0.6.2"]
             [lein-cooper "1.2.2"]
             [lein-doo "0.1.7"
@@ -29,6 +29,7 @@
                           [ws "3.1.0"]
                           [closurecompiler-externs "1.0.4"]
                           [source-map-support "0.4.16"]]}
+
   :cljsbuild
   {:builds {:start
             {:source-paths ["src/server" "src/common"]
